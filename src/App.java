@@ -1,17 +1,20 @@
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import br.com.rafael.model.Moeda;
+import br.com.rafael.services.CurrencyApi;
 
 public class App {
     public static void main(String[] args) {
         ArrayList<Moeda> moedas = new ArrayList<>();
+        CurrencyApi api = new CurrencyApi();
 
-        Moeda dolar = new Moeda("Dolar", "$");
-        Moeda euro = new Moeda("Euro", "€");
-        Moeda libra = new Moeda("Libra", "£");
-        Moeda real = new Moeda("Real", "R$");
+        Moeda dolar = new Moeda("Dolar", "$", "USD");
+        Moeda euro = new Moeda("Euro", "€", "EUR");
+        Moeda libra = new Moeda("Libra", "£", "GBP");
+        Moeda real = new Moeda("Real", "R$", "BRL");
 
         moedas.add(real);
         moedas.add(dolar);
@@ -37,6 +40,18 @@ public class App {
             Dimension tamanhoBotao = new Dimension(120, 40);
             botao.setPreferredSize(tamanhoBotao);
             botao.setMaximumSize(tamanhoBotao);
+
+            botao.addActionListener(e -> {
+                try {
+                    System.out.println(api.converter(moeda));
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (InterruptedException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+            });
 
             JLabel label = new JLabel(moeda.getSimbolo());
             label.setAlignmentY(Component.CENTER_ALIGNMENT);

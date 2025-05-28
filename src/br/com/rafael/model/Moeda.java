@@ -3,12 +3,18 @@ package br.com.rafael.model;
 public class Moeda {
   private String nome;
   private String simbolo;
+  private String codigo;
   private String valor;
 
-  public Moeda(String nome, String simbolo) {
+  public Moeda(String nome, String simbolo, String codigo) {
     this.nome = nome;
     this.simbolo = simbolo;
+    this.codigo = codigo;
     this.valor = "10";
+  }
+
+  public String getCodigo() {
+    return codigo;
   }
 
   public String getNome() {
