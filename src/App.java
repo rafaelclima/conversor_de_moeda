@@ -1,20 +1,23 @@
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import br.com.rafael.model.Moeda;
 import br.com.rafael.services.CurrencyApi;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ArrayList<Moeda> moedas = new ArrayList<>();
         CurrencyApi api = new CurrencyApi();
 
-        Moeda dolar = new Moeda("Dolar", "$", "USD");
-        Moeda euro = new Moeda("Euro", "€", "EUR");
-        Moeda libra = new Moeda("Libra", "£", "GBP");
-        Moeda real = new Moeda("Real", "R$", "BRL");
+        Moeda dolar = new Moeda("Dolar", "$", "USD", api);
+        Moeda euro = new Moeda("Euro", "€", "EUR", api);
+        Moeda libra = new Moeda("Libra", "£", "GBP", api);
+        Moeda real = new Moeda("Real", "R$", "BRL", api);
 
         moedas.add(real);
         moedas.add(dolar);
@@ -31,6 +34,8 @@ public class App {
         painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
         painel.setBorder(new EmptyBorder(32, 32, 32, 32));
 
+        Map<Moeda, JTextField> campos = new HashMap<>();
+
         for (Moeda moeda : moedas) {
             JPanel linha = new JPanel();
             linha.setLayout(new BoxLayout(linha, BoxLayout.X_AXIS));
@@ -40,18 +45,6 @@ public class App {
             Dimension tamanhoBotao = new Dimension(120, 40);
             botao.setPreferredSize(tamanhoBotao);
             botao.setMaximumSize(tamanhoBotao);
-
-            botao.addActionListener(e -> {
-                try {
-                    System.out.println(api.converter(moeda));
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (InterruptedException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            });
 
             JLabel label = new JLabel(moeda.getSimbolo());
             label.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -63,6 +56,27 @@ public class App {
             campoTexto.setMaximumSize(campoTamanho);
             campoTexto.setText(moeda.getValor());
             campoTexto.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+            campos.put(moeda, campoTexto);
+
+            botao.addActionListener(_ -> {
+                moeda.setValor(campoTexto.getText());
+                try {
+                    api.converter(moeda);
+
+                    for (Moeda m : campos.keySet()) {
+                        JTextField campo = campos.get(m);
+                        campo.setText(m.getValor());
+                    }
+
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
 
             linha.add(botao);
             linha.add(Box.createHorizontalGlue());
