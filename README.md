@@ -69,4 +69,4 @@ Sinta-se à vontade para bifurcar o projeto, abrir *issues* e enviar *pull reque
 
 ---
 
-Desenvolvido com ✨ por [Seu Nome/Usuário GitHub]
+Desenvolvido por [Rafael Lima/@rafaelclima]
