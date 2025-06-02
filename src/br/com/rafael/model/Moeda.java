@@ -1,20 +1,18 @@
 package br.com.rafael.model;
 
-import java.util.ArrayList;
-
 import br.com.rafael.services.CurrencyApi;
 
 public class Moeda {
   private String nome;
   private String simbolo;
   private String codigo;
-  private String valor;
+  private double valor;
 
   public Moeda(String nome, String simbolo, String codigo, CurrencyApi currencyApi) {
     this.nome = nome;
     this.simbolo = simbolo;
     this.codigo = codigo;
-    this.valor = "10";
+    this.valor = 10;
     currencyApi.addCurrencyKeys(this);
   }
 
@@ -30,11 +28,11 @@ public class Moeda {
     return simbolo;
   }
 
-  public String getValor() {
+  public double getValor() {
     return valor;
   }
 
-  public void setValor(String valor) {
+  public void setValor(double valor) {
     this.valor = valor;
   }
 

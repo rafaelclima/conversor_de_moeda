@@ -7,6 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -50,8 +51,8 @@ public class CurrencyApi {
 
       for (var objMoeda : currencyKeys) {
         if (objMoeda.getCodigo().equals(codigoValorMoedaApi.getKey())) {
-          var calculoConversao = Double.parseDouble(moeda.getValor()) * codigoValorMoedaApi.getValue();
-          objMoeda.setValor(String.valueOf(calculoConversao));
+          var calculoConversao = moeda.getValor() * codigoValorMoedaApi.getValue();
+          objMoeda.setValor(calculoConversao);
         }
       }
     }
