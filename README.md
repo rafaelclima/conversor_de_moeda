@@ -59,27 +59,9 @@ O objetivo principal é fornecer uma ferramenta prática e fácil de usar para c
 
 ## 🔑 Chave da API
 
-Este projeto utiliza uma chave de API da ExchangeRate-API. A chave está atualmente embutida no arquivo `src/br/com/rafael/services/CurrencyApi.java`:
-
-```java
-private String url_str = "https://v6.exchangerate-api.com/v6/8b52168fd0c4e0fc3076840e/latest/";
-```
-
 Para uso pessoal ou em produção, é altamente recomendável:
 1.  Registrar-se no ExchangeRate-API para obter sua própria chave gratuita.
 2.  Não embutir a chave diretamente no código-fonte. Em vez disso, utilize variáveis de ambiente ou arquivos de configuração para maior segurança e flexibilidade.
-
-## 🖼️ Screenshots
-
-*(Sugestão: Adicione aqui algumas capturas de tela da aplicação em funcionamento para dar uma prévia visual!)*
-
-## 💡 Possíveis Melhorias
-
-*   Adicionar mais moedas.
-*   Permitir que o usuário selecione as moedas de origem e destino de uma lista.
-*   Implementar um histórico de conversões.
-*   Melhorar o tratamento de erros de rede e da API.
-*   Refatorar para usar um padrão de design como MVC.
 
 ## 🤝 Contribuições
 
