@@ -55,7 +55,7 @@ public class App {
 
             JLabel label = new JLabel(moeda.getSimbolo());
             label.setAlignmentY(Component.CENTER_ALIGNMENT);
-            label.setBorder(new EmptyBorder(0, 8, 0, 4)); // espaço entre label e campo
+            label.setBorder(new EmptyBorder(0, 8, 0, 4));
 
             JTextField campoTexto = new JTextField(10);
             Dimension campoTamanho = new Dimension(campoTexto.getPreferredSize().width, 40);
@@ -92,25 +92,23 @@ public class App {
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Valor inválido: " + campoTexto.getText());
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Erro ao consultar a API: " + e.getMessage());
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Erro ao conectar a API: " + e.getMessage());
                 }
             });
 
             linha.add(botao);
-            linha.add(Box.createHorizontalStrut(8)); // espaço entre botão e linha
+            linha.add(Box.createHorizontalStrut(8));
             linha.add(separador);
-            linha.add(Box.createHorizontalStrut(8)); // espaço entre linha e label
+            linha.add(Box.createHorizontalStrut(8));
             linha.add(label);
             linha.add(campoTexto);
 
             painel.add(linha);
-            painel.add(Box.createVerticalStrut(8)); // Espaço entre linhas
+            painel.add(Box.createVerticalStrut(8));
         }
 
         JLabel instrucoes = new JLabel(
